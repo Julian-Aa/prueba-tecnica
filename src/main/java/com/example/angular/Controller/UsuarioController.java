@@ -40,11 +40,13 @@ public class UsuarioController {
         }
     }
 
+
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody Usuario usuario) {
         if (usuarioService.existsByCorreo(usuario.getCorreo())) {
             return ResponseEntity.badRequest().body("El correo electrónico ya existe.");
         } else {
+            usuario.setRol("custom");
             Usuario createdUser = usuarioService.save(usuario);
             return ResponseEntity.ok(createdUser);
         }

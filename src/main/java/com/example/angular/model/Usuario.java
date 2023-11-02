@@ -15,6 +15,7 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contrasena;
+    private String rol;
 
     public Usuario() {
     }

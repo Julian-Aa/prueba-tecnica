@@ -32,6 +32,11 @@ public class UsuarioService {
         return usuarioRepository.existsByCorreo(correo);
     }
 
+    public Usuario findUsuarioByCorreo(String correo) {
+        Usuario usuarios = usuarioRepository.findUsuarioByCorreo(correo);
+        return usuarios;
+    }
+
     public Usuario login(String correo, String contrasena) {
         Usuario usuarios = usuarioRepository.findUsuarioByCorreo(correo);
         if (usuarios != null && usuarios.getContrasena().equals(contrasena)) {
