@@ -37,6 +37,13 @@ public class ArticuloController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Articulo>> getArticlesByUser(@PathVariable Long userId) {
+        List<Articulo> articles = articuloService.getArticlesByUser(userId);
+        return ResponseEntity.ok(articles);
+    }
+
     @PostMapping("/image-rest")
     public String addArticulos(@RequestParam("file") MultipartFile file) {
         System.out.println("SI ESTA ENTRANDO");
@@ -53,6 +60,8 @@ public class ArticuloController {
 
     @PostMapping
     public ResponseEntity<?> createArticulo(@RequestBody Articulo articulo) {
+        System.out.println(imagen);
+        articulo.setImagen(imagen);
         Articulo createdArticulo = articuloService.save(articulo);
         return ResponseEntity.ok(createdArticulo);
     }

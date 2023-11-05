@@ -15,7 +15,9 @@ public class ArticuloService {
     public List<Articulo> findAll() {
         return articuloRepository.findAll();
     }
-
+    public List<Articulo> getArticlesByUser(Long userId) {
+        return articuloRepository.findByUserId(userId);
+    }
     public Articulo findBYId(Long id) {
         return articuloRepository.findById(id).orElse(null);
     }
