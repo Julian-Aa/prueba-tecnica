@@ -1,6 +1,7 @@
 package com.example.angular.Controller;
 
 
+import com.example.angular.model.Comentario;
 import com.example.angular.model.Comunidad;
 import com.example.angular.services.ComunidadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,28 @@ public class ComunidadController {
     @Autowired
     private ComunidadService comunidadService;
 
+
+    //GESTION COMENTARIOS
+    @GetMapping("comentarios/{comunidadId}")
+    public ResponseEntity<List<Comentario>>getComentarioByComunidadId(@PathVariable Long comunidadId) {
+        List<Comentario> comentarios = comunidadService.findComnetariosByComunidadId(comunidadId);
+        if (comentarios.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(comentarios);
+        }
+    }
+
+    @PostMapping("comentarios/nuevo")
+    public ResponseEntity<Comentario> crearComentario(@RequestBody Comentario nuevoComentario) {
+        // Aquí podrías realizar validaciones adicionales antes de guardar el comentario
+        Comentario creado = comunidadService.guardarComentario(nuevoComentario);
+
+        // Devuelve un ResponseEntity con el comentario creado y un código 201 (CREATED)
+        return ResponseEntity.status(201).body(creado);
+    }
+
+    //GESTION COMUNIDADES
     @GetMapping
     public ResponseEntity<List<Comunidad>> getAllComunidades() {
 

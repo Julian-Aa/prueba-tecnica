@@ -1,10 +1,13 @@
 package com.example.angular.services;
 
+import com.example.angular.model.Comentario;
 import com.example.angular.model.Comunidad;
+import com.example.angular.respository.ComentarioRepository;
 import com.example.angular.respository.ComunidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -13,6 +16,22 @@ public class ComunidadService {
     @Autowired
     ComunidadRepository comunidadRepository;
 
+    @Autowired
+    ComentarioRepository comentarioRepository;
+
+
+    //Gestion Comentarios
+    public List<Comentario> findComnetariosByComunidadId(Long comunidadId) {
+        return comentarioRepository.findByComunidadId(comunidadId);
+    }
+
+    public Comentario guardarComentario(Comentario comentario) {
+        comentario.setFechaCreacion(new Date());
+
+        return comentarioRepository.save(comentario);
+    }
+
+    //Gestion Comunidades
     public List<Comunidad> findAll (){
         return comunidadRepository.findAll();
     }
