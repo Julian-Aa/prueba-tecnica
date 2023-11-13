@@ -14,20 +14,18 @@ public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String contenido;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "comunidad_id")
+    @JsonBackReference
     private Comunidad comunidad;
-
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+    private String tipo;
 
     public Comentario (){}
 }

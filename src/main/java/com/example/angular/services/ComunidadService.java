@@ -1,5 +1,6 @@
 package com.example.angular.services;
 
+import com.example.angular.model.Articulo;
 import com.example.angular.model.Comentario;
 import com.example.angular.model.Comunidad;
 import com.example.angular.respository.ComentarioRepository;
@@ -17,18 +18,18 @@ public class ComunidadService {
     ComunidadRepository comunidadRepository;
 
     @Autowired
-    ComentarioRepository comentarioRepository;
+    ComentarioService comentarioService;
 
 
     //Gestion Comentarios
     public List<Comentario> findComnetariosByComunidadId(Long comunidadId) {
-        return comentarioRepository.findByComunidadId(comunidadId);
+        return comentarioService.findByComunidadId(comunidadId);
     }
 
     public Comentario guardarComentario(Comentario comentario) {
         comentario.setFechaCreacion(new Date());
 
-        return comentarioRepository.save(comentario);
+        return comentarioService.save(comentario);
     }
 
     //Gestion Comunidades
