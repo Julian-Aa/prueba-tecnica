@@ -1,13 +1,13 @@
-package com.example.angular;
+package com.example.prueba;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AngularApplication {
+public class PruebaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AngularApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 	}
 
 }
